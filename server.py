@@ -38,17 +38,13 @@ class Handler_TCPServer(socketserver.BaseRequestHandler):
         7: "Sunday",
     }
 
-    
-    #GPIO stuff for button push
-    #GPIO.setmode(GPIO.BCM) #potential to break shit but it is the same as pHAT
-
 
     #turn on wakeuplight job
     def wakeUpAlarm(theThing, msg, alarmLink, receiver_email):
         
         print("waking up for:", os.getpid())
         ##code to start wake up light
-        GPIO.setmode(GPIO.BCM) #potential to break shit but it is the same as pHAT
+        GPIO.setmode(GPIO.BCM) #it is the same as pHAT
         #vars for button length
         deltaTime = 0
         startTime = 0
@@ -56,7 +52,7 @@ class Handler_TCPServer(socketserver.BaseRequestHandler):
         sleepTime = 0.1
         #pin being used
         buttonPin = 17 #using gpio pin 17 - physically pin 11
-
+        #GPIO code from https://www.youtube.com/watch?v=LEi_dT9KDJI done by BurgZerg Arcade
         GPIO.setup(buttonPin, GPIO.IN, pull_up_down = GPIO.PUD_UP) #setup pint to check for button push
 
         #wake up light loop
